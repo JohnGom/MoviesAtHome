@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity {
 
         if(AppController.getInstance().IsValidPass(password.getText().toString(),confirmP.getText().toString())) {
 
-            datos.insertarCliente(new Cliente("1234", nombre.getText().toString(), apellido.getText().toString(),
+            datos.insertarCliente(new Cliente(null, nombre.getText().toString(), apellido.getText().toString(),
                     telefono.getText().toString(), userName.getText().toString(), password.getText().toString()));
             nombre.setText("");
             apellido.setText("");
