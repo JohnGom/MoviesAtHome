@@ -13,9 +13,6 @@ import com.herprogramacion.moviesathome.sqlite.ContratoPelicula.Clientes;
 import com.herprogramacion.moviesathome.sqlite.ContratoPelicula.Peliculas;
 import com.herprogramacion.moviesathome.sqlite.ContratoPelicula.Pedidos;
 
-/**
- * Created by lds on 22/09/2016.
- */
 public class Operaciones {
     private static BaseDatosPelicula baseDatos;
 
@@ -72,7 +69,7 @@ public class Operaciones {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
         // Generar Pk
-        String idCliente = "1234";
+        String idCliente = Clientes.generarIdCliente();
 
         ContentValues valores = new ContentValues();
         valores.put(Clientes.ID, cliente.getIdCliente());
@@ -87,13 +84,12 @@ public class Operaciones {
     }
 
     public boolean validCliente (String user, String pass) {
-        boolean res=false;
+        boolean res= false;
 
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
-        String sql = String.format("SELECT %s,%s FROM %s where %s=?", Clientes.USUARIO, Clientes.CONTRASEÑA, Tablas.CLIENTE, Clientes.USUARIO);
-        String[] selectionArgs = {user};
-        Cursor fila =db.rawQuery(sql, selectionArgs);
+        Cursor fila =db.rawQuery("SELECT " +Clientes.USUARIO+","+Clientes.CONTRASEÑA+" FROM "+Tablas.CLIENTE+" where "+Clientes.USUARIO+"=  "+user+"",null);
+
         if (fila.moveToFirst()) {
             if(fila.getString(0).equals(user) && fila.getString(1).equals(pass)){
                 res=true;
@@ -103,7 +99,7 @@ public class Operaciones {
         } else {
             res=false;
         }
-
+        db.close();
         return res;
     }
 
