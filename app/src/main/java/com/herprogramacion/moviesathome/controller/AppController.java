@@ -41,8 +41,6 @@ public class AppController {
     private void fillCountryList() {
             peli.insertarPelicula(new Pelicula(null, "CivilWar", "Accion", "Latino", "historietas de marvel","2:20",34,R.drawable.civilwar));
             peli.insertarPelicula(new Pelicula(null, "Skiptrace", "Accion", "Español", "esta jackie chan","1:34",34,R.drawable.skiptrace));
-        
-//https://www.youtube.com/watch?v=NLmw18mkwIc
 
     }
 

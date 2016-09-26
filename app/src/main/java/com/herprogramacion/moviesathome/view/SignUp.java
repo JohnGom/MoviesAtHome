@@ -19,15 +19,17 @@ public class SignUp extends AppCompatActivity {
     EditText password;
     EditText telefono;
     EditText confirmP;
+    EditText id;
 
-    Operaciones datos;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
+        id = (android.widget.EditText) this.findViewById(R.id.id);
         nombre = (android.widget.EditText) this.findViewById(R.id.nombre);
         apellido = (android.widget.EditText) this.findViewById(R.id.apellido);
         telefono = (android.widget.EditText) this.findViewById(R.id.telefono);
@@ -40,7 +42,7 @@ public class SignUp extends AppCompatActivity {
 
         if(AppController.getInstance().IsValidPass(password.getText().toString(),confirmP.getText().toString())) {
 
-            datos.insertarCliente(new Cliente(null, nombre.getText().toString(), apellido.getText().toString(),
+            Operaciones.obtenerInstancia(this).insertarCliente(new Cliente(id.getText().toString(), nombre.getText().toString(), apellido.getText().toString(),
                     telefono.getText().toString(), userName.getText().toString(), password.getText().toString()));
             nombre.setText("");
             apellido.setText("");

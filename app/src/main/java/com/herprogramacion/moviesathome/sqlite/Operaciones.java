@@ -26,14 +26,11 @@ public class Operaciones {
         return instancia;
     }
 
-    public String insertarPedido(Pedido pedido) {
+    public void insertarPedido(Pedido pedido) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
-        // Generar Pk
-        String idPedido = Pedidos.generarIdPedido();
-
         ContentValues valores = new ContentValues();
-        valores.put(Pedidos.ID, idPedido);
+        valores.put(Pedidos.ID, pedido.getIdPedido());
         valores.put(Pedidos.FECHA_INICIO, pedido.getFechaIncio());
         valores.put(Pedidos.FECHA_FIN, pedido.getFechaFin());
         valores.put(Pedidos.COSTO, pedido.getCosto());
@@ -43,16 +40,14 @@ public class Operaciones {
         // Insertar cabecera
         db.insertOrThrow(Tablas.PEDIDO, null, valores);
 
-        return idPedido;
     }
 
-    public String insertarProducto(Pelicula pelicula) {
+    public void insertarPelicula(Pelicula pelicula) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
         ContentValues valores = new ContentValues();
         // Generar Pk
-        String idPelicula = Peliculas.generarIdPelicula();
-        valores.put(Peliculas.ID, idPelicula);
+        valores.put(Peliculas.ID, pelicula.getIdPelicula());
         valores.put(Peliculas.NOMBRE, pelicula.getNombre());
         valores.put(Peliculas.CATEGORIA, pelicula.getCategoria());
         valores.put(Peliculas.IDIOMA, pelicula.getIdioma());
@@ -62,14 +57,11 @@ public class Operaciones {
         valores.put(Peliculas.IMAGE, pelicula.getImage());
 
         db.insertOrThrow(Tablas.PEDIDO, null, valores);
-        return idPelicula;
+        db.close();
     }
 
     public void insertarCliente (Cliente cliente) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
-
-        // Generar Pk
-        String idCliente = Clientes.generarIdCliente();
 
         ContentValues valores = new ContentValues();
         valores.put(Clientes.ID, cliente.getIdCliente());
@@ -101,6 +93,9 @@ public class Operaciones {
         }
         db.close();
         return res;
+    }
+    public void todos (){
+        baseDatos.getPelis();
     }
 
 }

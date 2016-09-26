@@ -41,20 +41,14 @@ public class ContratoPelicula {
     }
 
     public static class Clientes implements ColumnasCliente {
-        public static String generarIdCliente() {
-            return "CLI-" + UUID.randomUUID().toString();
-        }
+
     }
 
         public static class Peliculas implements ColumnasPelicula {
-            public static String generarIdPelicula() {
-                return "PEL-" + UUID.randomUUID().toString();
-            }
+
         }
 
         public static class Pedidos implements ColumnasPedido {
-            public static String generarIdPedido() {
-                return "PED-" + UUID.randomUUID().toString();
-            }
+
         }
     }
